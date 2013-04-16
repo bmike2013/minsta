@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>my insta</title>
+		<link href='http://fonts.googleapis.com/css?family=Sofia|Open+Sans:400,300,600' rel='stylesheet' type='text/css'>        
+        <!-- Our CSS stylesheet file -->
+        <link rel="stylesheet" href="assets/css/styles.css" />
+        
+        <!--[if lt IE 9]>
+          <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+		
+		<!--[if gte IE 9]>
+		<style type="text/css">
+		.gradient {
+		filter: none;
+		}
+		</style>
+		<![endif]-->
+    </head>
+    
+    <body>
+
+        <header class="gradient">
+            <h1><a href="index.html">minsta</a></h1>
+			<h3><a id="filter-open" href="#">Show Filters</a></h3>
+
+        
+		<div class="nav-outer">
+        <nav id="filter" class="gradient">
+		
+		
+				
+		</nav>
+		</div>
+        </header>
+        <section id="container">
+        	<ul id="stage">
+
+            </ul>
+        </section>
+          
+        <footer>
+            <h1><a href="index.html">minsta</a></h1>
+        </footer>
+        
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+        <script src="assets/js/jquery.quicksand.js"></script>
+    		<script>
+$(function() {
+$.ajax({
+type: "GET",
+dataType: "jsonp",
+cache: false,
+url: "https://api.instagram.com/v1/users/############/media/recent/?access_token=##################",
+success: function(data) {
+   var count = data.data.length;
+   if(count > 40) {
+      count = 40
+   }
+    for (var i = 0; i < count; i++) {
+$("#stage").append("<li data-tags='" + data.data[i].filter +"' class='instagram-placeholder'><a href='#" + data.data[i].id +"'><img class='instagram-image " + data.data[i].filter +"' src='" + data.data[i].images.standard_resolution.url +"' /></a><div class='overlay' id='" + data.data[i].id +"'><img class='instagram-image' src='" + data.data[i].images.standard_resolution.url +"' /><a href='#page' class='close'>close</a><div class='controls'><h2>" + data.data[i].caption.text +"</h2></div></div></li>");   				
+
+
+}
+
+		$(document).ready(function(){
+			
+			var items = $('#stage li'),
+				itemsByTags = {};
+			
+			// Looping though all the li items:
+			
+			items.each(function(i){
+				var elem = $(this),
+					tags = elem.data('tags').split(',');
+				
+				// Adding a data-id attribute. Required by the Quicksand plugin:
+				elem.attr('data-id',i);
+				
+				$.each(tags,function(key,value){
+					
+					// Removing extra whitespace:
+					value = $.trim(value);
+					
+					if(!(value in itemsByTags)){
+						// Create an empty array to hold this item:
+						itemsByTags[value] = [];
+					}
+					
+					// Each item is added to one array per tag:
+					itemsByTags[value].push(elem);
+				});
+				
+			});
+
+			// Creating the "Everything" option in the menu:
+			createList('All Filters',items);
+
+			// Looping though the arrays in itemsByTags:
+			$.each(itemsByTags,function(k,v){
+				createList(k,v);
+			});
+			
+			$('#filter a').live('click',function(e){
+				var link = $(this);
+				
+				link.addClass('active').siblings().removeClass('active');
+				
+				// Using the Quicksand plugin to animate the li items.
+				// It uses data('list') defined by our createList function:
+				
+				$('#stage').quicksand(link.data('list').find('li'));
+				e.preventDefault();
+			});
+			
+			$('#filter a:first').click();
+			
+			function createList(text,items){
+				
+				// This is a helper function that takes the
+				// text of a menu button and array of li items
+				
+				// Creating an empty unordered list:
+				var ul = $('<ul>',{'class':'hidden'});
+				
+				$.each(items,function(){
+					// Creating a copy of each li item
+					// and adding it to the list:
+					
+					$(this).clone().appendTo(ul);
+				});
+
+				ul.appendTo('#container');
+
+				// Creating a menu item. The unordered list is added
+				// as a data parameter (available via .data('list'):
+				
+				var a = $('<a>',{
+					html: text,
+					href:'#',
+					class:'gradient',
+					data: {list:ul}
+				}).appendTo('#filter');
+			}
+		});		
+
+        $(document).ready(function(){
+				var jQcontactLink = $("#filter-open"),
+					jQfooterAction = $("#filter");
+
+				jQcontactLink.toggle(
+					function (e) {
+						jQfooterAction.slideDown(450);
+						jQcontactLink.text("Hide Filters");
+						e.preventDefault();
+					},
+					function (e) {
+						jQfooterAction.slideUp(350);
+						jQcontactLink.text("Show Filters");
+						e.preventDefault();
+					}
+				);           
+         });		
+
+}				
+});
+});
+		</script>
+    </body>
+</html>
