@@ -5,7 +5,7 @@ Minsta is a very simple web app for displaying all your instagram photos on a si
 
 Steps:
 
-  Go to this URL and create an app: http://instagram.com/developer/clients/register/
+  1. Go to this URL and create an app: http://instagram.com/developer/clients/register/
   
   Enter in the URI of the your site. When you submit your form, you will get a client id and a client secret.
   Copy the client id somewhere as you will need it in a moment.
