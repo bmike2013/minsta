@@ -28,3 +28,8 @@ Steps:
   Change the first set of hashes to your user ID. The second set is your access token.
   
   5. That's it - you're good to go.
+
+
+This app uses:
+
+jQuery Quicksand: http://razorjack.net/quicksand/
