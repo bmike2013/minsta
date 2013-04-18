@@ -182,7 +182,7 @@ div.nav-outer {
 	float:left;
 	padding:2%;
 	margin:1.4% 1%;
-	font-size: 10px;
+	font-size: 1.2em;
 	line-height: 30px;
 	text-align: center;
 	-webkit-box-sizing: border-box;
@@ -241,7 +241,7 @@ div.nav-outer {
 #container li{
 	float:left;
 	margin:1%;
-	width:48%;
+	width:98%;
 }
 
 #container li a{
@@ -335,15 +335,18 @@ footer a.tzine,a.tzine:visited{
 	overflow:hidden;
 }
 
+@media all and (min-width: 400px) {
+	#container li{
+		width:48%;
+	}
+}
+
 @media all and (min-width: 500px) {
 #filter a{
 	float:left;
 	width:31%;
 	font-size:14px;
 	margin: 0.4% 1%;
-}
-#container li{
-	width:23%;
 }
 
 #filter a{
@@ -353,9 +356,12 @@ footer a.tzine,a.tzine:visited{
 }
 
 @media all and (min-width: 760px) {
+#container li{
+	width:23%;
+}	
 #filter {
-padding-bottom:0.5%;
-padding-top:0.5%;	
+	padding-bottom:0.5%;
+	padding-top:0.5%;	
 }
 #filter a{
 	float:left;
