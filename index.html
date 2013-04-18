@@ -54,7 +54,7 @@ $.ajax({
 type: "GET",
 dataType: "jsonp",
 cache: false,
-url: "https://api.instagram.com/v1/users/############/media/recent/?access_token=##################",
+url: "https://api.instagram.com/v1/users/50836806/media/recent/?access_token=50836806.0224374.e0eb19a57deb40fe89e915763b5f9604",
 success: function(data) {
    var count = data.data.length;
    if(count > 40) {
@@ -62,12 +62,14 @@ success: function(data) {
    }
     for (var i = 0; i < count; i++) {
 
-			var caption = data.data[i].caption;
+var caption = data.data[i].caption;
 
-			if(caption == !null){var title = data.data[i].caption.text}else{var title = 'no caption'}
+if(caption != null){var title = data.data[i].caption.text}else{var title = 'no caption'}
 
-			$("#stage").append("<li data-tags='" + data.data[i].filter +"' class='instagram-placeholder'><a href='#" + data.data[i].id +"'><img class='instagram-image " + data.data[i].filter +"' src='" + data.data[i].images.standard_resolution.url +"' /></a><div class='overlay' id='" + data.data[i].id +"'><img class='instagram-image' src='" + data.data[i].images.standard_resolution.url +"' /><a href='#page' class='close'>close</a><div class='controls'><h2>" + title +"</h2></div></div></li>");   				
-	}
+$("#stage").append("<li data-tags='" + data.data[i].filter +"' class='instagram-placeholder'><a href='#" + data.data[i].id +"'><img class='instagram-image " + data.data[i].filter +"' src='" + data.data[i].images.standard_resolution.url +"' /></a><div class='overlay' id='" + data.data[i].id +"'><img class='instagram-image' src='" + data.data[i].images.standard_resolution.url +"' /><a href='#page' class='close'>close</a><div class='controls'><h2>" + title +"</h2></div></div></li>");   				
+
+
+}
 
 		$(document).ready(function(){
 			
