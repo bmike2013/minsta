@@ -64,7 +64,7 @@ success: function(data) {
 
 			var caption = data.data[i].caption;
 
-			if(caption == !null){var title = data.data[i].caption.text}else{var title = 'o'}
+			if(caption == !null){var title = data.data[i].caption.text}else{var title = 'no caption'}
 
 			$("#stage").append("<li data-tags='" + data.data[i].filter +"' class='instagram-placeholder'><a href='#" + data.data[i].id +"'><img class='instagram-image " + data.data[i].filter +"' src='" + data.data[i].images.standard_resolution.url +"' /></a><div class='overlay' id='" + data.data[i].id +"'><img class='instagram-image' src='" + data.data[i].images.standard_resolution.url +"' /><a href='#page' class='close'>close</a><div class='controls'><h2>" + title +"</h2></div></div></li>");   				
 	}
