@@ -54,7 +54,7 @@ $.ajax({
 type: "GET",
 dataType: "jsonp",
 cache: false,
-url: "https://api.instagram.com/v1/users/50836806/media/recent/?access_token=50836806.0224374.e0eb19a57deb40fe89e915763b5f9604",
+url: "https://api.instagram.com/v1/users/USERIDHERE/media/recent/?access_token=ACCESSTOKENHERE",
 success: function(data) {
    var count = data.data.length;
    if(count > 40) {
@@ -80,7 +80,7 @@ $("#stage").append("<li data-tags='" + data.data[i].filter +"' class='instagram-
 			
 			items.each(function(i){
 				var elem = $(this),
-					tags = elem.data('tags').split(',');
+					tags = elem.data('tags').toString().split(',');
 				
 				// Adding a data-id attribute. Required by the Quicksand plugin:
 				elem.attr('data-id',i);
